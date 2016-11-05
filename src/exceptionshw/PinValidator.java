@@ -1,4 +1,6 @@
-package exceptions;
+package exceptionshw;
+
+import exceptionshw.exceptions.AccountIsLockedException;
 
 import java.util.Scanner;
 
@@ -7,6 +9,7 @@ import java.util.Scanner;
  */
 public class PinValidator {
     private static final int PIN = 4752;
+
     public void enterPinKod() {
         int count = 3;
         System.out.println("Введите пин-код");
@@ -17,14 +20,9 @@ public class PinValidator {
                 break;
             } else {
                 if (count <= 0) {
-                    try {
-                        System.out.println("Аккаунт заблокирован на 5 секунд");
-                        Thread.currentThread().wait(5000);
 
-                        enterPinKod();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    System.out.println("Аккаунт заблокирован на 5 секунд");
+                    throw new AccountIsLockedException();
                 }
             }
             System.out.println("Попробуйте еще раз");
@@ -35,4 +33,5 @@ public class PinValidator {
     public boolean isCorrect(int value) {
         return value == PIN;
     }
+
 }

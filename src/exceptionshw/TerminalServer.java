@@ -1,4 +1,6 @@
-package exceptions;
+package exceptionshw;
+
+import exceptionshw.exceptions.NotEnoughMoney;
 
 /**
  * Created by Administrator on 04.11.16.
@@ -9,7 +11,10 @@ public class TerminalServer {
     public TerminalServer() {
     }
 
-    public int getRestOfMoney() {
+    public int getRestOfMoney() throws NotEnoughMoney {
+        if (restOfMoney == 0) {
+            throw new NotEnoughMoney();
+        }
         return restOfMoney;
     }
 

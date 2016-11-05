@@ -1,4 +1,6 @@
-package exceptions;
+package exceptionshw;
+
+import exceptionshw.exceptions.InvalidValue;
 
 /**
  * Created by Administrator on 04.11.16.
@@ -15,11 +17,11 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void putTheMoney(int sum) {
+    public void putTheMoney(int sum) throws InvalidValue {
         if (sum > 0 && sum % 100 == 0) {
             terminalServer.putMoneyOnCurrentAccount(sum);
         } else {
-            System.out.println("Сумма должна превышать 100$");
+            throw new InvalidValue();
         }
     }
 
@@ -28,7 +30,6 @@ public class TerminalImpl implements Terminal {
         if (hasEnoughMoney(sum)) {
             return sum;
         } else {
-            System.out.println("Недостаточно средств на счету");
             return 0;
         }
     }
